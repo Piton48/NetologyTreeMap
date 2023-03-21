@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 
 public class Main {
@@ -11,9 +12,11 @@ public class Main {
         people.add(new Person("Александр", "Пушкин", 37));
         people.add(new Person("Николай", "Миклухо-Маклай", 41));
         people.add(new Person("Сергей", "Селивёрстов", 38));
-        people.add(new Person("Не", "нашел примера тройной фамилии", 30));
-        people.add(new Person("кроме", "Михаила Алексееыича Кутузов Смоленского ", 35));
+        people.add(new Person("Андрей", "Астахов", 17));
+        people.add(new Person("Василий", "Ермольчик", 10));
 
+        Predicate<Person> isMinor = (p) -> p.getAge() < 18;
+        people.removeIf(isMinor);
         people.sort(new PeopleNobilityComporator(3));
         for (Person p : people) System.out.println(p.toString());
     }
