@@ -14,7 +14,17 @@ public class Main {
         people.add(new Person("Не", "нашел примера тройной фамилии", 30));
         people.add(new Person("кроме", "Михаила Алексееыича Кутузов Смоленского ", 35));
 
-        people.sort(new PeopleNobilityComporator(3));
+        people.sort((o1,o2) -> {
+            if (o1.surnameLenght() > o2.surnameLenght() & o2.surnameLenght() < 3) return 1;
+            if (o1.surnameLenght() < o2.surnameLenght() & o1.surnameLenght() < 3) return -1;
+            if (o1.surnameLenght() == o2.surnameLenght()
+                    | (o1.surnameLenght() >= 3 & o2.surnameLenght() >= 3)) {
+                if (o1.getAge() > o2.getAge()) {
+                    return 1;
+                } else return -1;
+            }
+            return 0;
+        });
         for (Person p : people) System.out.println(p.toString());
     }
 }
